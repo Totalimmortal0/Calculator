@@ -28,8 +28,9 @@ btns.forEach((btn) => {
         const opRegex = /[-+x÷]/i;
 
         if (btn.textContent.match(opRegex) && operator !== "" && num1 !== "" && num2 !== "") {
-            result = operate(Number(num1), Number(num2), operator).toFixed(4)
+            result = operate(Number(num1), Number(num2), operator)
             num2 = ""
+            if (result.toString().charAt(1) === ".") result = Number(result).toFixed(4)
             output.textContent = result
         }
 
@@ -59,17 +60,19 @@ btns.forEach((btn) => {
                 output.textContent = "you can't divide by 0 lol"
                 num2 = ""
             } else {
-                result = operate(Number(num1), Number(num2), operator).toFixed(4)
+                result = operate(Number(num1), Number(num2), operator)
                 output.textContent = result
                 console.log(result)
             }
         }
 
+        if (result.toString().charAt(1) === ".") output.textContent = Number(result).toFixed(4)
+
         // console.log(btn.textContent)
-        // console.log("num1: " + num1)
-        // console.log("num2: " + num2)
-        // console.log("operator: " + operator)
-        // console.log("result: " + result)
+        console.log("num1: " + num1)
+        console.log("num2: " + num2)
+        console.log("operator: " + operator)
+        console.log("result: " + result)
     })
 })
 
